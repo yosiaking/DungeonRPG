@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GoDungeon001 dungeon;
     private DungeonBase dungeon001;
 
+    //バトルフラグ
+    private static boolean battleFlag;
+
     //ヒーロー生成
     private Hero h;
 
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button attackButton;
     private Button magicButton;
     private Button recoverButton;
-    private Button statusButton;
     private Button escapeButton;
 
     //メニュー変数
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     //Context変数
-    Context context;
+    private static Context context;
 
     //レイアウトパラメータ
     private final ViewGroup.LayoutParams WCWC = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //バトルフラグ
+        battleFlag = false;
+
         //物語表示板
         storyTellingLog = (LinearLayout) findViewById(R.id.storyTellingLog);
 
@@ -79,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton = (Button) findViewById(R.id.attack);
         magicButton = (Button) findViewById(R.id.magic);
         recoverButton = (Button) findViewById(R.id.recover);
-        statusButton = (Button) findViewById(R.id.status);
         escapeButton = (Button) findViewById(R.id.escape);
 
         //クリックリスナー
@@ -87,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton.setOnClickListener(this);
         magicButton.setOnClickListener(this);
         recoverButton.setOnClickListener(this);
-        statusButton.setOnClickListener(this);
         escapeButton.setOnClickListener(this);
 
         //メニューカウント取得
@@ -112,39 +115,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        //ダンジョン生成
         dungeon = new GoDungeon001();
-        dungeon001 = dungeon.dungeonGenerate(h, 1, context);
+        dungeon001 = dungeon.dungeonGenerate(h, 1);
     }
-
 
 
     //戦闘中ボタンセット
-    private void battleButtonSet(){
+    public void battleButtonSet(){
         goButton.setEnabled(false);
         attackButton.setEnabled(true);
-        magicButton.setEnabled(true);
-        recoverButton.setEnabled(true);
-        statusButton.setEnabled(true);
         escapeButton.setEnabled(false);
+        recoverButton.setEnabled(true);
+        magicButton.setEnabled(true);
     }
 
     //探索中ボタンセット
-    private void exploreButtonSet(){
+    public void exploreButtonSet(){
         goButton.setEnabled(true);
         attackButton.setEnabled(false);
-        magicButton.setEnabled(false);
-        recoverButton.setEnabled(true);
-        statusButton.setEnabled(true);
         escapeButton.setEnabled(true);
+        recoverButton.setEnabled(true);
+        magicButton.setEnabled(false);
     }
 
     //ボタンすべて非表示
-    private void allButtonNoSet(){
+    public void allButtonNoSet(){
         goButton.setEnabled(false);
         attackButton.setEnabled(false);
-        magicButton.setEnabled(false);
-        recoverButton.setEnabled(false);
-        statusButton.setEnabled(false);
         escapeButton.setEnabled(false);
+        recoverButton.setEnabled(false);
+        magicButton.setEnabled(false);
     }
 
     @Override
@@ -155,68 +154,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //ストーリーメッセージ インスタンス化
                 messageList = new ArrayList<TextView>();
-                TextView text = new TextView(this);
-                text.setText("【すすむ】");
-
-                messageList.add(text);
-
-
-
-                TextView enemy = new TextView(this);
-                enemy.setText("敵の攻撃");
-                messageList.add(enemy);
-
-//                TextView hero = new TextView(this);
-//                hero.setText("味方ですよ");
+                TextView goText = new TextView(this);
+                goText.setText("【すすむ】");
+                messageList.add(goText);
 
                 //進行
-                messageList.addAll(dungeon001.goForward());
+                messageList.addAll(dungeon001.goForwardDungeon());
 
                 for(int i=0; i < messageList.size(); i++){
-
                     //damageタグを持つTextViewは赤で表示
                     if(messageList.get(i).getTag() == "damage"){
                         messageList.get(i).setTextColor(Color.parseColor("#ff6666"));
-                    }
-                    //recoverタグを持つTextViewは青で表示
-                    if(messageList.get(i).getTag() == "recover"){
+                    }else if(messageList.get(i).getTag() == "recover"){
                         messageList.get(i).setTextColor(Color.parseColor("#6666ff"));
+                    }else {
+                        messageList.get(i).setTextColor(Color.parseColor("#555555"));
                     }
-
                     storyTellingLog.addView(messageList.get(i));
                 }
 
-
-
-
-//                //物語表示TextViewで動的表示
-//                storyTellingText = new TextView(getApplicationContext());
-//                storyTellingText.setTextColor(Color.parseColor("#3399ff"));
-//                storyTellingText.setText(text);
-
-
-
                 break;
 
-            case R.id.recover :
-
-                break;
-
-            case R.id.status :
-
-                break;
 
             case R.id.attack :
 
                 break;
 
-            case R.id.magic :
-
-                break;
 
             case R.id.escape :
 
                 break;
+
+            case R.id.recover :
+
+
+                break;
+
+
+            case R.id.magic :
+
+                break;
+
         }
 
         //メニューカウント更新
@@ -236,14 +214,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void menuCountSet(){
-
         menuName.setText("" + h.getName());
         menuHp.setText("" + h.getHp() + "/" + h.getMaxHp());
         menuMp.setText("" + h.getMp() + "/" + h.getMaxMp());
         menuJewel.setText("" + Human.getCountJewel());
         menuFloor.setText("" + Human.getDungeonFloor());
         menuDistance.setText("" + Human.getDistance());
+    }
 
+    public static Context getContext(){
+        return MainActivity.context;
+    }
+
+    public static void setBattleFlag(boolean battleFlag){
+        MainActivity.battleFlag = battleFlag;
     }
 
 }
