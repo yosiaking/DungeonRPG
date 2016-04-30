@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button attackButton;
     private Button magicButton;
     private Button recoverButton;
+    private Button scareButton;
     private Button escapeButton;
 
     //メニュー変数
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton = (Button) findViewById(R.id.attack);
         magicButton = (Button) findViewById(R.id.magic);
         recoverButton = (Button) findViewById(R.id.recover);
+        scareButton = (Button ) findViewById(R.id.scare);
         escapeButton = (Button) findViewById(R.id.escape);
 
         //クリックリスナー
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton.setOnClickListener(this);
         magicButton.setOnClickListener(this);
         recoverButton.setOnClickListener(this);
+        scareButton.setOnClickListener(this);
         escapeButton.setOnClickListener(this);
 
         //メニューカウント取得
@@ -125,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton.setEnabled(true);
         escapeButton.setEnabled(false);
         recoverButton.setEnabled(true);
+        scareButton.setEnabled(true);
         magicButton.setEnabled(true);
     }
 
@@ -134,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton.setEnabled(false);
         escapeButton.setEnabled(true);
         recoverButton.setEnabled(true);
+        scareButton.setEnabled(false);
         magicButton.setEnabled(false);
     }
 
@@ -143,17 +148,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         attackButton.setEnabled(false);
         escapeButton.setEnabled(false);
         recoverButton.setEnabled(false);
+        scareButton.setEnabled(false);
         magicButton.setEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
 
+        //ストーリーメッセージ インスタンス化
+        messageList = new ArrayList<TextView>();
+
         switch (v.getId()){
             case R.id.go :
 
-                //ストーリーメッセージ インスタンス化
-                messageList = new ArrayList<TextView>();
                 TextView goText = new TextView(this);
                 goText.setText("【すすむ】");
                 messageList.add(goText);
@@ -161,31 +168,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //進行
                 messageList.addAll(dungeon001.goForwardDungeon());
 
-                for(int i=0; i < messageList.size(); i++){
-                    //damageタグを持つTextViewは赤で表示
-                    if(messageList.get(i).getTag() == "damage"){
-                        messageList.get(i).setTextColor(Color.parseColor("#ff6666"));
-                    }else if(messageList.get(i).getTag() == "recover"){
-                        messageList.get(i).setTextColor(Color.parseColor("#6666ff"));
-                    }else {
-                        messageList.get(i).setTextColor(Color.parseColor("#555555"));
-                    }
-                    storyTellingLog.addView(messageList.get(i));
-                }
-
                 break;
 
 
             case R.id.attack :
 
-                break;
 
-
-            case R.id.escape :
-
-                break;
-
-            case R.id.recover :
 
 
                 break;
@@ -195,6 +183,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
 
+
+
+            case R.id.recover :
+
+
+
+
+                break;
+
+            case R.id.scare :
+
+                break;
+
+            case R.id.escape :
+
+                break;
+
+
+        }
+
+        //ストーリーテキスト表示
+        for(int i=0; i < messageList.size(); i++){
+            //damageタグ=赤、recoverタグ=青、その他=黒で表示
+            if(messageList.get(i).getTag() == "damage"){
+                messageList.get(i).setTextColor(Color.parseColor("#ff6666"));
+            }else if(messageList.get(i).getTag() == "recover"){
+                messageList.get(i).setTextColor(Color.parseColor("#6666ff"));
+            }else {
+                messageList.get(i).setTextColor(Color.parseColor("#555555"));
+            }
+            storyTellingLog.addView(messageList.get(i));
         }
 
         //メニューカウント更新

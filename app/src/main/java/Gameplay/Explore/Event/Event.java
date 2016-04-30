@@ -35,7 +35,7 @@ public class Event {
 
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView recover99Text = new TextView(MainActivity.getContext());
-		recover99Text.setText("泉を発見！"+ h.getName() + "のHPとMPが全回復した！");
+		recover99Text.setText("泉を発見！"+ h.getName() + "のHPとMPが全回復した！" + "\r\n");
 		recover99Text.setTag("recover");
 		arrayList.add(recover99Text);
 
@@ -50,7 +50,7 @@ public class Event {
 
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView trap01Text = new TextView(MainActivity.getContext());
-		trap01Text.setText("石につまずいた！" + h.getName() + "は、" + damage  + "のダメージを受けた！");
+		trap01Text.setText("石につまずいた！" + h.getName() + "は" + damage  + "のダメージを受けた！" + "\r\n");
 		trap01Text.setTag("damage");
 		arrayList.add(trap01Text);
 
@@ -64,7 +64,7 @@ public class Event {
 
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView trap01Text = new TextView(MainActivity.getContext());
-		trap01Text.setText("落盤！" + h.getName() + "は、" + damage  + "のダメージを受けた！");
+		trap01Text.setText("落盤！" + h.getName() + "は" + damage  + "のダメージを受けた！" + "\r\n");
 		trap01Text.setTag("damage");
 		arrayList.add(trap01Text);
 
@@ -79,7 +79,7 @@ public class Event {
 		//表示用String配列
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView trap99Text = new TextView(MainActivity.getContext());
-		trap99Text.setText("大爆発！" + h.getName() + "は、" + damage  + "のダメージを受けた！");
+		trap99Text.setText("大爆発！" + h.getName() + "は" + damage  + "のダメージを受けた！" + "\r\n");
 		trap99Text.setTag("damage");
 		arrayList.add(trap99Text);
 
@@ -95,7 +95,7 @@ public class Event {
 		//表示用String配列
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView jewelText = new TextView(MainActivity.getContext());
-		jewelText.setText("宝石発見！" + h.getName() + "は" + getJewelCount + "個の宝石を手に入れた！");
+		jewelText.setText("宝石発見！" + h.getName() + "は" + getJewelCount + "個の宝石を手に入れた！" + "\r\n");
 		arrayList.add(jewelText);
 		return arrayList;
 	}

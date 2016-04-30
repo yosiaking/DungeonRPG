@@ -28,7 +28,7 @@
             android:id="@+id/heroName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:textSize="@dimen/menu_text_size"
             android:text="名前"/>
@@ -36,7 +36,7 @@
         <TextView
             android:id="@+id/heroH"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -57,7 +57,7 @@
         <TextView
             android:id="@+id/heroM"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -78,7 +78,7 @@
         <TextView
             android:id="@+id/heroJ"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -98,7 +98,7 @@
         <TextView
             android:id="@+id/heroF"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -117,7 +117,7 @@
         <TextView
             android:id="@+id/heroD"
             android:textStyle="bold"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="7dp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -133,8 +133,9 @@
             android:text="1"
             android:textSize="@dimen/menu_text_size"/>
 
-
     </LinearLayout>
+
+
 
 
     <ScrollView
@@ -145,12 +146,13 @@
         android:layout_marginTop="10dp"
         >
 
+
         <LinearLayout
+
             android:id="@+id/storyTellingLog"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
         </LinearLayout>
 
@@ -168,18 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/buttonColor"
-            android:textColor="@color/buttonTextColor"
-            android:layout_margin="@dimen/button_margin"/>
-
-        <Button
-            android:id="@+id/recover"
-            android:text="いのる"
-            android:textSize="12sp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/buttonColor"
+            android:background="@drawable/unable_button_selecter"
             android:textColor="@color/buttonTextColor"
             android:layout_margin="@dimen/button_margin"/>
 
@@ -190,18 +181,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/buttonColor"
+            android:background="@drawable/unable_button_selecter"
             android:textColor="@color/buttonTextColor"
             android:layout_margin="@dimen/button_margin"/>
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
 
         <Button
             android:id="@+id/magic"
@@ -210,9 +192,27 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/buttonColor"
+            android:background="@drawable/unable_button_selecter"
             android:textColor="@color/buttonTextColor"
             android:layout_margin="@dimen/button_margin"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/recover"
+            android:text="いのる"
+            android:textSize="12sp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/unable_button_selecter"
+            android:textColor="@color/buttonTextColor"
+            android:layout_margin="@dimen/button_margin"/>
+
 
         <Button
             android:id="@+id/scare"
@@ -221,7 +221,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/buttonColor"
+            android:background="@drawable/unable_button_selecter"
             android:textColor="@color/buttonTextColor"
             android:layout_margin="@dimen/button_margin"/>
 
@@ -232,7 +232,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/buttonColor"
+            android:background="@drawable/unable_button_selecter"
             android:textColor="@color/buttonTextColor"
             android:layout_margin="@dimen/button_margin"/>
 
