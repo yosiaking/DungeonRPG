@@ -1,33 +1,48 @@
 package Object.Character.Enemy;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import android.widget.TextView;
 
-import Object.Character.CreatureType.*;
+import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.R;
+
+import java.util.ArrayList;
+
+import Object.Character.CreatureType.Human;
+import Object.Character.CreatureType.Monster;
 
 
 public class Dragon extends Monster {
+
+	private int enemyImg = R.drawable.enemy_dragon;
 	
 	public Dragon(){
 		super("ドラゴン", 70, 70, 20, 20, 20, 20, 3, MainActivity.getContext());
 	}
 	
-	public void action(Human h){
-		
+	public ArrayList<TextView> action(Human h){
+
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+
 		//ドラゴンの行動
 		int enemyAction = new java.util.Random().nextInt(100);
+
 		if(enemyAction >= 0 && enemyAction < 60){
-			attack(h);
+			arrayList.addAll(attack(h));
 		}else if(enemyAction >= 60 && enemyAction < 90)
-			magicAttack(h);
+			arrayList.addAll(magicAttack(h));
 		else{
-			if(getHp() <= getMaxHp()/5){
+			if(getHp() <= getMaxHp() / 5){
 				//逃げる
-				escape();
+				arrayList.addAll(escape());
+			}else{
+				arrayList.addAll(attack(h));
 			}
-			this.attack(h);
 		}
-		
+		return arrayList;
 	}
 
+	public int getEnemyImg(){
+		return enemyImg;
+	}
 	
 }

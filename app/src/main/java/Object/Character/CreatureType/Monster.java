@@ -3,6 +3,8 @@ package Object.Character.CreatureType;
 import android.content.Context;
 import android.widget.TextView;
 
+import com.example.sample.dungeonrpg.MainActivity;
+
 import java.util.ArrayList;
 
 import Object.Character.Origin.Creature;
@@ -24,42 +26,73 @@ public abstract class Monster extends Creature {
 	}
 	
 	//敵の行動
-	public abstract void action(Human h);
+	public abstract ArrayList<TextView> action(Human h);
+
+	//出現画像
+	public abstract int getEnemyImg();
 	
 	//攻撃
-	public void attack(Human h){
-		System.out.println(this.getName() + "の攻撃！");
-		System.out.println(h.getName() + "に" + attackDamage() + "のダメージ！");
-		h.damageHp(attackDamage());
-	};
+	public ArrayList<TextView> attack(Human h){
+
+		monsterMessageList = new ArrayList<TextView>();
+		TextView attackText = new TextView(MainActivity.getContext());
+
+		//ダメージ値確定
+		int damage = attackDamage();
+		//ダメージ
+		h.damageHp(damage);
+
+		//テキストをビューに追加
+		attackText.setText(this.getName() + "の攻撃！ " + h.getName() + "に" + damage + "のダメージ！" + "\r\n");
+		attackText.setTag("damage");
+		monsterMessageList.add(attackText);
+		return monsterMessageList;
+	}
 
 	
 	//魔法攻撃
-	public void magicAttack(Human h){
-		System.out.println(this.getName() + "は魔法を唱えた！");
+	public ArrayList<TextView> magicAttack(Human h){
+
+		monsterMessageList = new ArrayList<TextView>();
+		TextView magicText = new TextView(MainActivity.getContext());
+
+		//ダメージ値確定
+		int damage = magicDamage();
+
 		if(this.getMp()<5){
-			System.out.println("しかし、MPが足りない！");
+			magicText.setText(this.getName() + "は魔法を唱えた！ しかし、MPが足りない！" + "\r\n");
 		}else{
-			System.out.println(h.getName() + "に" + attackDamage() + "のダメージ！");
-			h.damageHp(attackDamage());
+			h.damageHp(damage);
+			magicText.setText(this.getName() + "は魔法を唱えた！ " + h.getName() + "に" + damage + "のダメージ！" + "\r\n");
+			magicText.setTag("damage");
 		}
-	};
+		monsterMessageList.add(magicText);
+		return monsterMessageList;
+	}
 	
 	
 	//逃げる
-	public void escape(){
-		System.out.println(this.getName() + "は逃げ出した！");
+	public ArrayList<TextView> escape(){
+		monsterMessageList = new ArrayList<TextView>();
+		TextView escapeText = new TextView(MainActivity.getContext());
+		escapeText.setText(this.getName() + "は逃げ出した！" + "\r\n");
 		this.escapeFlag = true;
+		monsterMessageList.add(escapeText);
+		return monsterMessageList;
 	}
 	
 	//アイテムドロップ 基本ドロップ率 10%で持っている宝石を落とす
-	public void dropItem() {
-		// TODO Auto-generated method stub
+	public ArrayList<TextView> dropItem() {
+		monsterMessageList = new ArrayList<TextView>();
+		TextView jewelText = new TextView(MainActivity.getContext());
+
 		int dropRate = new java.util.Random().nextInt(100);
 		if(dropRate > 0 && dropRate < 10){
-			System.out.println(getName() + "は、" + this.jewel  + "個の宝石を落とした。");
+			jewelText.setText(getName() + "は、" + this.jewel  + "個の宝石を落とした。" + "\r\n");
 			Human.obtainJewel(this.jewel);
 		}
+		monsterMessageList.add(jewelText);
+		return monsterMessageList;
 	}
 	
 	//物理ダメージ計算のメソッド
@@ -89,4 +122,6 @@ public abstract class Monster extends Creature {
 	public int getJewel(){
 		return this.jewel;
 	}
+
+
 }

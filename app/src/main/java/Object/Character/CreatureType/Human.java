@@ -15,7 +15,9 @@ public abstract class Human extends Creature {
 	private static int countJewel = 0;
 	//ダンジョン
 	private static int dungeonFloor = 1;
-	
+	//バトルフラッグ
+	private static boolean battleFlag = false;
+	//コンテキスト
 	private Context context;
 
 	private ArrayList<TextView> humanMessageList;
@@ -50,22 +52,27 @@ public abstract class Human extends Creature {
 
 		humanMessageList = new ArrayList<TextView>();
 		TextView magicText = new TextView(context);
-		magicText.setText(getName() + "は魔法を唱えた！" + m.getName() + "に" + (int)magicDamage + "のダメージ！");
+		magicText.setText(getName() + "は魔法を唱えた！\n" + m.getName() + "に" + (int)magicDamage + "のダメージ！");
 		humanMessageList.add(magicText);
 
 		return humanMessageList;
 	}
 	
 	//回復
-	public ArrayList<TextView> recover(Human h){
-		int recoverValue = h.getMaxHp() - new java.util.Random().nextInt(10);
-		int recoverValueActual = Math.min(recoverValue, h.getMaxHp()-h.getHp());
-		h.recoverHp(recoverValueActual);
-		this.damageMp(7);
+	public ArrayList<TextView> recover(){
 
 		humanMessageList = new ArrayList<TextView>();
 		TextView recoverText = new TextView(context);
-		recoverText.setText(getName() + "は祈りを捧げた！ "+ getName() + "のHPが" + recoverValueActual + "回復した！");
+
+		if(this.getMp() >= 7){
+			int recoverValue = this.getMaxHp() - new java.util.Random().nextInt(10);
+			int recoverValueActual = Math.min(recoverValue, this.getMaxHp() - this.getHp());
+			this.recoverHp(recoverValueActual);
+			this.damageMp(7);
+			recoverText.setText(getName() + "は祈りを捧げた！"+ getName() + "のHPが" + recoverValueActual + "回復した！"+ "\r\n");
+		}else{
+			recoverText.setText(getName() + "は祈りを捧げた！ しかし、MPが足りない");
+		}
 		recoverText.setTag("recover");
 		humanMessageList.add(recoverText);
 
@@ -114,7 +121,17 @@ public abstract class Human extends Creature {
 	public static void forwardDungeonFloor(int forwardFloor){
 		Human.dungeonFloor += forwardFloor;
 	}
-	
+
+	//バトルフラッグセッター
+	public static void setBattleFlag(boolean flagOnOff){
+		Human.battleFlag = flagOnOff;
+	}
+
+	//バトルフラッグゲッター
+	public static boolean getBattleFlag(){
+		return Human.battleFlag;
+	}
+
 	//リセット
 	public static void reset(){
 		//進んだ距離初期化
@@ -124,5 +141,6 @@ public abstract class Human extends Creature {
 		//ダンジョン初期化
 		dungeonFloor = 1;
 	}
+
 
 }

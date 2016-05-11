@@ -6,4 +6,5 @@
     <color name="ableButtonBgColor">#FFFFFF</color>
     <color name="unableButtonBgColor">#cccccc</color>
     <color name="buttonTextColor">#444444</color>
+    <color name="statusText">#220000</color>
 </resources>

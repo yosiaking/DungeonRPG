@@ -11,15 +11,15 @@ public class EncountPattern {
 		int encountNum = new java.util.Random().nextInt(100);
 		
 		switch(encountPattern){
-		//001 スライム100％
-		case 001 :
+		//1 スライム100％
+		case 1 :
 			if(encountNum < 100){
 				m = MakeEnemy.makeEnemy("slime");
 			}
 			break;
 
 		//002 スライム70％ ゴブリン30%
-		case 002 :
+		case 2 :
 			if(encountNum < 70){
 				m = MakeEnemy.makeEnemy("slime");
 				return m;
@@ -28,8 +28,8 @@ public class EncountPattern {
 			}
 			break;
 
-		//003 スライム30％ ゴブリン50% 魔法使い 20%
-		case 003 :
+		//3 スライム30％ ゴブリン50% 魔法使い 20%
+		case 3 :
 			if(encountNum < 30){
 				m = MakeEnemy.makeEnemy("slime");
 			}else if(encountNum < 80){
@@ -39,8 +39,8 @@ public class EncountPattern {
 			}
 			break;
 			
-		//004 スライム20％ ゴブリン30% 魔法使い40%  ドラゴン10%
-		case 004 :
+		//4 スライム20％ ゴブリン30% 魔法使い40%  ドラゴン10%
+		case 4 :
 			if(encountNum < 20){
 				m = MakeEnemy.makeEnemy("slime");
 			}else if(encountNum < 50){
@@ -52,8 +52,8 @@ public class EncountPattern {
 			}
 			break;
 
-		//005 スライム10％ ゴブリン20% 魔法使い20% ドラゴン40% 魔人10%
-		case 005 :
+		//5 スライム10％ ゴブリン20% 魔法使い20% ドラゴン40% 魔人10%
+		case 5 :
 			if(encountNum < 10){
 				m = MakeEnemy.makeEnemy("slime");
 			}else if(encountNum < 30){

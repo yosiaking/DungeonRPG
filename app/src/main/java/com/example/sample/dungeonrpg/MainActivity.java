@@ -13,16 +13,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import Gameplay.Explore.GoDungeon001;
+import Gameplay.Explore.GoDungeon;
 import Object.Character.CreatureType.Human;
+import Object.Character.CreatureType.Monster;
 import Object.Character.Player.Hero;
 import Object.Dungeon.DungeonBase;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    //スクロールビュー
-    private ScrollView scrollView;
 
     //メッセージarray
     private ArrayList<TextView> messageList;
@@ -31,16 +29,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout storyTellingLog;
 
     //ダンジョン生成
-    private GoDungeon001 dungeon;
-    private DungeonBase dungeon001;
-
-    //バトルフラグ
-    private static boolean battleFlag;
+    private GoDungeon dungeon;
+    private DungeonBase goingDungeon;
 
     //ヒーロー生成
     private Hero h;
 
-    //ボタン変数
+    //モンスター生成
+    private Monster m;
+
+
+    //ボタンフィールド
     private Button goButton;
     private Button attackButton;
     private Button magicButton;
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button scareButton;
     private Button escapeButton;
 
-    //メニュー変数
+    //メニューフィールド
     private TextView menuName;
     private TextView menuHp;
     private TextView menuMp;
@@ -57,8 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView menuDistance;
 
 
-    //Context変数
+    //Contextフィールド
     private static Context context;
+
+    //ScrollViewフィールド
+    public static ScrollView scrollView;
 
     //レイアウトパラメータ
     private final ViewGroup.LayoutParams WCWC = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -71,11 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //バトルフラグ
-        battleFlag = false;
-
         //物語表示板
         storyTellingLog = (LinearLayout) findViewById(R.id.storyTellingLog);
+
+        //スクロールビュー取得
+        scrollView = (ScrollView) findViewById(R.id.storyScroll);
 
         //Context取得
         context = getApplicationContext();
@@ -117,8 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuCountSet();
 
 //        //ダンジョン生成
-        dungeon = new GoDungeon001();
-        dungeon001 = dungeon.dungeonGenerate(h, 1);
+        dungeon = new GoDungeon(1);
+        goingDungeon = dungeon.dungeonGenerate(h);
     }
 
 
@@ -166,15 +168,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 messageList.add(goText);
 
                 //進行
-                messageList.addAll(dungeon001.goForwardDungeon());
+                messageList.addAll(goingDungeon.goForwardDungeon());
+
+                //バトルフラッグオン
+                //モンスターエンカウント&戦闘用ボタン配置
+                if(Human.getBattleFlag() == true){
+                    m = goingDungeon.encountEnemy();
+                    battleButtonSet();
+
+                    TextView encountEnemy = new TextView(this);
+                    encountEnemy.setText(m.getName() + "が現れた!" + "\r\n");
+                    messageList.add(encountEnemy);
+                }
 
                 break;
 
 
             case R.id.attack :
 
+                TextView attackText = new TextView(this);
+                attackText.setText("【たたかう】");
+                messageList.add(attackText);
 
+                //モンスターを攻撃
+                messageList.addAll(h.attack(m));
 
+                //HP>0 → 行動 HP<=0 → アイテムドロップ&戦闘終了
+                enemyAction();
 
                 break;
 
@@ -187,8 +207,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.recover :
 
+                TextView recoverText = new TextView(this);
+                recoverText.setText("【いのる】");
+                messageList.add(recoverText);
 
+                //回復
+                messageList.addAll(h.recover());
 
+                if(Human.getBattleFlag()){
+                    enemyAction();
+                }
 
                 break;
 
@@ -207,11 +235,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(int i=0; i < messageList.size(); i++){
             //damageタグ=赤、recoverタグ=青、その他=黒で表示
             if(messageList.get(i).getTag() == "damage"){
-                messageList.get(i).setTextColor(Color.parseColor("#ff6666"));
+                messageList.get(i).setTextColor(Color.parseColor("#880000"));
             }else if(messageList.get(i).getTag() == "recover"){
-                messageList.get(i).setTextColor(Color.parseColor("#6666ff"));
+                messageList.get(i).setTextColor(Color.parseColor("#4444cc"));
             }else {
-                messageList.get(i).setTextColor(Color.parseColor("#555555"));
+                messageList.get(i).setTextColor(Color.parseColor("#220000"));
             }
             storyTellingLog.addView(messageList.get(i));
         }
@@ -234,19 +262,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void menuCountSet(){
         menuName.setText("" + h.getName());
+        menuName.setTextColor(Color.parseColor("#220000"));
         menuHp.setText("" + h.getHp() + "/" + h.getMaxHp());
+        menuHp.setTextColor(Color.parseColor("#220000"));
         menuMp.setText("" + h.getMp() + "/" + h.getMaxMp());
+        menuMp.setTextColor(Color.parseColor("#220000"));
         menuJewel.setText("" + Human.getCountJewel());
+        menuJewel.setTextColor(Color.parseColor("#220000"));
         menuFloor.setText("" + Human.getDungeonFloor());
+        menuFloor.setTextColor(Color.parseColor("#220000"));
         menuDistance.setText("" + Human.getDistance());
+        menuDistance.setTextColor(Color.parseColor("#220000"));
     }
 
     public static Context getContext(){
         return MainActivity.context;
     }
 
-    public static void setBattleFlag(boolean battleFlag){
-        MainActivity.battleFlag = battleFlag;
+
+
+    public void enemyAction(){
+        //モンスター行動
+        if(m.getHp() >= 0){
+            //true なら モンスターの行動
+            messageList.addAll(m.action(h));
+
+            //モンスターが逃げた場合
+            if(m.getEscapeFlag() == true){
+                m = null;
+                Human.setBattleFlag(false);
+                scrollView.setBackgroundResource(goingDungeon.getBgImgName());
+                exploreButtonSet();
+            }
+
+        }else{
+            //モンスターを倒した場合(HP<=0)
+            TextView downEnemy = new TextView(this);
+            downEnemy.setText(m.getName() + "を倒した。" + "\r\n");
+            messageList.add(downEnemy);
+            messageList.addAll(m.dropItem());
+            m = null;
+            Human.setBattleFlag(false);
+            scrollView.setBackgroundResource(goingDungeon.getBgImgName());
+            exploreButtonSet();
+
+        }
     }
 
 }

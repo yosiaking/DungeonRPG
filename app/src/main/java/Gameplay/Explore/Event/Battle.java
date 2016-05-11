@@ -6,6 +6,7 @@ import com.example.sample.dungeonrpg.MainActivity;
 
 import java.util.ArrayList;
 
+import Object.Character.CreatureType.Human;
 import Object.Character.CreatureType.Monster;
 
 public class Battle {
@@ -19,6 +20,13 @@ public class Battle {
 		textView.setText(m.getName() + "が現れた！");
 		arrayList.add(textView);
 
+		return arrayList;
+	}
+
+
+	public static ArrayList<TextView> enemyAction(Human h, Monster m){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		arrayList.addAll(m.action(h));
 		return arrayList;
 	}
 

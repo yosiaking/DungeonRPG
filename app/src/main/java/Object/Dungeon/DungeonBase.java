@@ -8,10 +8,13 @@ import com.example.sample.dungeonrpg.MainActivity;
 import java.util.ArrayList;
 
 import Object.Character.CreatureType.Human;
+import Object.Character.CreatureType.Monster;
 
 public abstract class DungeonBase extends AppCompatActivity {
 
 	protected Human h;
+
+	protected int bgImgName;
 
 	//コンストラクタ
 	public DungeonBase(Human human){
@@ -19,6 +22,12 @@ public abstract class DungeonBase extends AppCompatActivity {
 	}
 
 	public abstract ArrayList<TextView> goForwardDungeon();
+
+	public abstract int getBgImgName();
+
+	//モンスターの出現
+	public abstract Monster encountEnemy();
+
 
 	//奥に進む
 	public ArrayList<TextView> goForward(){
@@ -42,5 +51,5 @@ public abstract class DungeonBase extends AppCompatActivity {
 
 		return arrayList;
 	}
-	
+
 }

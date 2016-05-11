@@ -13,7 +13,7 @@ public class Event {
 
 
 	//モンスター出現&バトル
-	public static ArrayList<TextView> battleEvent(Human h, int encountPattern){
+	public static Monster battleEvent(int encountPattern){
 
 		//表示用String配列
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
@@ -21,12 +21,26 @@ public class Event {
 
 		//エンカウント
 		Monster m = EncountPattern.encounter(encountPattern);
-		//バトル
-		Battle.encountEnemy(m);
+
+		return m;
+	}
+
+
+	//湧き水を発見(最大HPの1/5回復)
+	public static ArrayList<TextView> recoverEvent01(Human h){
+
+		int recoverValueHp = h.getMaxHp() / 5;
+		int recoverValueActual = Math.min(recoverValueHp, h.getMaxHp() - h.getHp());
+		h.recoverHp(recoverValueActual);
+
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView recover99Text = new TextView(MainActivity.getContext());
+		recover99Text.setText("湧き水を発見！"+ h.getName() + "のHPが"+ recoverValueActual + "回復した！" + "\r\n");
+		recover99Text.setTag("recover");
+		arrayList.add(recover99Text);
 
 		return arrayList;
 	}
-	
 	
 	//泉発見(HPMP全回復)
 	public static ArrayList<TextView> recoverEvent99(Human h){
@@ -56,6 +70,8 @@ public class Event {
 
 		return arrayList;
 	}
+
+
 
 	//トラップ(落盤) ダメージ:1〜最大HPの半分+1
 	public static ArrayList<TextView> trapEvent02(Human h){
