@@ -13,10 +13,10 @@ import Object.Character.CreatureType.Monster;
 
 public class Demon extends Monster {
 
-	private int enemyImg = R.drawable.enemy_wizard;
+	private int enemyImg = R.drawable.enemy_demon;
 
 	public Demon(){
-		super("魔人", 100, 70, 25, 25, 20, 20, 10, MainActivity.getContext());
+		super("魔人", 100, 70, 25, 25, 20, 20, 10, 100, MainActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

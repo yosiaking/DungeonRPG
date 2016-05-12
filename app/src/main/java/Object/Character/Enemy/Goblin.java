@@ -15,7 +15,7 @@ public class Goblin extends Monster {
 	private int enemyImg = R.drawable.enemy_goblin;
 	
 	public Goblin(){
-		super("ゴブリン", 30, 30, 0, 0, 7, 1, 1, MainActivity.getContext());
+		super("ゴブリン", 30, 30, 0, 0, 7, 1, 1, 15, MainActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

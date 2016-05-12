@@ -12,17 +12,23 @@ import Object.Character.Origin.Creature;
 public abstract class Monster extends Creature {
 
 	private boolean escapeFlag = false;
-	private int jewel;
+
+	//落とす宝石の数
+	protected int jewel;
+
+	//宝石を落とす確率
+	protected int dropRate;
 
 	protected Context context;
 
 	protected ArrayList<TextView> monsterMessageList;
 
 	//コンストラクタ
-	public Monster(String name, int hp, int maxHp, int mp, int maxMp, int power, int magic, int jewel, Context c){
+	public Monster(String name, int hp, int maxHp, int mp, int maxMp, int power, int magic, int jewel, int dropRate, Context c){
 		super(name, hp, maxHp, mp, maxMp, power, magic);
 		this.jewel = jewel;
 		this.context = c;
+		this.dropRate = dropRate;
 	}
 	
 	//敵の行動
@@ -56,15 +62,14 @@ public abstract class Monster extends Creature {
 		monsterMessageList = new ArrayList<TextView>();
 		TextView magicText = new TextView(MainActivity.getContext());
 
-		//ダメージ値確定
-		int damage = magicDamage();
-
-		if(this.getMp()<5){
-			magicText.setText(this.getName() + "は魔法を唱えた！ しかし、MPが足りない！" + "\r\n");
-		}else{
+		if(this.getMp() >= 5){
+			//ダメージ値確定
+			int damage = magicDamage();
 			h.damageHp(damage);
 			magicText.setText(this.getName() + "は魔法を唱えた！ " + h.getName() + "に" + damage + "のダメージ！" + "\r\n");
 			magicText.setTag("damage");
+		}else{
+			magicText.setText(this.getName() + "は魔法を唱えた！ しかし、MPが足りない！" + "\r\n");
 		}
 		monsterMessageList.add(magicText);
 		return monsterMessageList;
@@ -81,13 +86,13 @@ public abstract class Monster extends Creature {
 		return monsterMessageList;
 	}
 	
-	//アイテムドロップ 基本ドロップ率 10%で持っている宝石を落とす
+	//アイテムドロップ
 	public ArrayList<TextView> dropItem() {
 		monsterMessageList = new ArrayList<TextView>();
 		TextView jewelText = new TextView(MainActivity.getContext());
 
-		int dropRate = new java.util.Random().nextInt(100);
-		if(dropRate > 0 && dropRate < 10){
+		int dropRateCount = new java.util.Random().nextInt(100);
+		if(dropRateCount - getDropRate() < 0){
 			jewelText.setText(getName() + "は、" + this.jewel  + "個の宝石を落とした。" + "\r\n");
 			Human.obtainJewel(this.jewel);
 		}
@@ -123,5 +128,9 @@ public abstract class Monster extends Creature {
 		return this.jewel;
 	}
 
+	//ゲッタードロップ確率
+	public int getDropRate(){
+		return this.dropRate;
+	}
 
 }

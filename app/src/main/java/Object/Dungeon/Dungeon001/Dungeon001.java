@@ -10,14 +10,17 @@ import java.util.ArrayList;
 import Gameplay.Explore.Event.Event;
 import Object.Character.CreatureType.Human;
 import Object.Character.CreatureType.Monster;
-import Object.Dungeon.DungeonBase;
+import Object.Dungeon.DungeonType.Cave;
 
-public class Dungeon001_01 extends DungeonBase {
+public class Dungeon001 extends Cave {
 	
-	public Dungeon001_01(Human human) {
+	public Dungeon001(Human human) {
 		super(human);
 		// TODO Auto-generated constructor stub
 	}
+
+	//名前
+	protected String dungeonName = "はじまりのどうくつ";
 
 	//BgImgName
 	private int bgImgName = R.drawable.dungeon001;
@@ -66,14 +69,33 @@ public class Dungeon001_01 extends DungeonBase {
 
 	}
 
-	//モンスターエンカウント
-	//モンスターの出現
+
+
+	//モンスターエンカウント計算
 	public Monster encountEnemy(){
-		Monster m = Event.battleEvent(4);
+		Monster m;
+		if(Human.getDungeonFloor() == 1){
+			m = Event.battleEvent(1);
+		}else if(Human.getDungeonFloor() == 2){
+			m = Event.battleEvent(2);
+		}else if(Human.getDungeonFloor() == 3){
+			m = Event.battleEvent(3);
+		}else if(Human.getDungeonFloor() == 4){
+			m = Event.battleEvent(4);
+		}else{
+			m = Event.battleEvent(5);
+		}
 		return m;
 	}
+
+
+	//
+
+
 
 	public int getBgImgName(){
 		return bgImgName;
 	}
+
+
 }

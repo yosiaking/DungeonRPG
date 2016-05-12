@@ -16,7 +16,7 @@ public class Slime extends Monster {
 	private int	enemyImg = R.drawable.enemy_slime;
 
 	public Slime(){
-		super("スライム", 20, 20, 0, 0, 3, 1, 1, MainActivity.getContext());
+		super("スライム", 20, 20, 0, 0, 3, 1, 1, 10,  MainActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

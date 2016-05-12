@@ -11,10 +11,4 @@ public class Hero extends Human {
 		super(name, hp, maxHp, mp, maxMp, 10, 10, MainActivity.getContext());
 	}
 	
-	@Override
-	public void escape() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

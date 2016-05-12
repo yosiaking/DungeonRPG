@@ -15,7 +15,7 @@ public class Wizard extends Monster {
 	int enemyImg = R.drawable.enemy_wizard;
 	
 	public Wizard(){
-		super("魔法使い", 40, 50, 10, 25, 20, 20, 3, MainActivity.getContext());
+		super("黒魔術師", 40, 40, 10, 10, 8, 20, 3, 20, MainActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

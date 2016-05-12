@@ -172,82 +172,121 @@
     </ScrollView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
 
-        <Button
+        <ImageView
             android:id="@+id/go"
-            android:text="すすむ"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_go"
             android:layout_margin="@dimen/button_margin"/>
 
-        <Button
+        <ImageView
             android:id="@+id/attack"
-            android:text="たたかう"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_attack"
             android:layout_margin="@dimen/button_margin"/>
 
-        <Button
+        <ImageView
             android:id="@+id/magic"
-            android:text="まほう"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_magic"
             android:layout_margin="@dimen/button_margin"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/attack"-->
+            <!--android:text="たたかう"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/unable_button_selecter"-->
+            <!--android:textColor="@color/buttonTextColor"-->
+            <!--android:layout_margin="@dimen/button_margin"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/magic"-->
+            <!--android:text="まほう"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/unable_button_selecter"-->
+            <!--android:textColor="@color/buttonTextColor"-->
+            <!--android:layout_margin="@dimen/button_margin"/>-->
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <ImageView
             android:id="@+id/recover"
-            android:text="いのる"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_recover"
             android:layout_margin="@dimen/button_margin"/>
 
-
-        <Button
+        <ImageView
             android:id="@+id/scare"
-            android:text="おどかす"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_scare"
             android:layout_margin="@dimen/button_margin"/>
 
-        <Button
+        <ImageView
             android:id="@+id/escape"
-            android:text="ぬけだす"
-            android:textSize="12sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/unable_button_selecter"
-            android:textColor="@color/buttonTextColor"
+            android:src="@drawable/button_selecter_escape"
             android:layout_margin="@dimen/button_margin"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/recover"-->
+            <!--android:text="いのる"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/unable_button_selecter"-->
+            <!--android:textColor="@color/buttonTextColor"-->
+            <!--android:layout_margin="@dimen/button_margin"/>-->
+
+
+        <!--<Button-->
+            <!--android:id="@+id/scare"-->
+            <!--android:text="おどかす"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/unable_button_selecter"-->
+            <!--android:textColor="@color/buttonTextColor"-->
+            <!--android:layout_margin="@dimen/button_margin"/>-->
+
+        <!--<Button-->
+            <!--android:id="@+id/escape"-->
+            <!--android:text="ぬけだす"-->
+            <!--android:textSize="12sp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/unable_button_selecter"-->
+            <!--android:textColor="@color/buttonTextColor"-->
+            <!--android:layout_margin="@dimen/button_margin"/>-->
 
 
     </LinearLayout>

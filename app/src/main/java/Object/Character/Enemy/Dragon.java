@@ -14,9 +14,10 @@ import Object.Character.CreatureType.Monster;
 public class Dragon extends Monster {
 
 	private int enemyImg = R.drawable.enemy_dragon;
-	
+
+
 	public Dragon(){
-		super("ドラゴン", 70, 70, 20, 20, 20, 20, 3, MainActivity.getContext());
+		super("ドラゴン", 70, 70, 20, 20, 20, 20, 5, 30, MainActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

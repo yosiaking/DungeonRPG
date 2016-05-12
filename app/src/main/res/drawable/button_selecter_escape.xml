@@ -3,9 +3,9 @@
 
     <item
         android:state_enabled="false"
-        android:drawable="@drawable/button_go_off" />
+        android:drawable="@drawable/button_escape_off" />
 
     <item
-        android:drawable="@drawable/button_go_on" />
+        android:drawable="@drawable/button_escape_on" />
 
 </selector>

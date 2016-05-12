@@ -16,6 +16,10 @@ public abstract class DungeonBase extends AppCompatActivity {
 
 	protected int bgImgName;
 
+	protected String dungeonName = "";
+
+	protected String dungeonType = "";
+
 	//コンストラクタ
 	public DungeonBase(Human human){
 		this.h = human;
@@ -50,6 +54,14 @@ public abstract class DungeonBase extends AppCompatActivity {
 		}
 
 		return arrayList;
+	}
+
+	public String getDungeonName(){
+		return dungeonName;
+	}
+
+	public String getDungeonType(){
+		return dungeonType;
 	}
 
 }

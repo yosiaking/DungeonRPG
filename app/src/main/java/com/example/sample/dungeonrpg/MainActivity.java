@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import Gameplay.Explore.GoDungeon;
+import Gameplay.Function.FunctionReset;
 import Object.Character.CreatureType.Human;
 import Object.Character.CreatureType.Monster;
 import Object.Character.Player.Hero;
@@ -40,12 +41,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     //ボタンフィールド
-    private Button goButton;
-    private Button attackButton;
-    private Button magicButton;
-    private Button recoverButton;
-    private Button scareButton;
-    private Button escapeButton;
+    private ImageView goButton;
+    private ImageView attackButton;
+    private ImageView magicButton;
+    private ImageView recoverButton;
+    private ImageView scareButton;
+    private ImageView escapeButton;
 
     //メニューフィールド
     private TextView menuName;
@@ -83,12 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         context = getApplicationContext();
 
         //ボタン
-        goButton = (Button) findViewById(R.id.go);
-        attackButton = (Button) findViewById(R.id.attack);
-        magicButton = (Button) findViewById(R.id.magic);
-        recoverButton = (Button) findViewById(R.id.recover);
-        scareButton = (Button ) findViewById(R.id.scare);
-        escapeButton = (Button) findViewById(R.id.escape);
+        goButton = (ImageView) findViewById(R.id.go);
+        attackButton = (ImageView) findViewById(R.id.attack);
+        magicButton = (ImageView) findViewById(R.id.magic);
+        recoverButton = (ImageView) findViewById(R.id.recover);
+        scareButton = (ImageView) findViewById(R.id.scare);
+        escapeButton = (ImageView) findViewById(R.id.escape);
 
         //クリックリスナー
         goButton.setOnClickListener(this);
@@ -154,6 +155,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         magicButton.setEnabled(false);
     }
 
+    public void onResume(){
+        super.onResume();
+
+    }
+
     @Override
     public void onClick(View v) {
 
@@ -201,6 +207,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.magic :
 
+                TextView magicText = new TextView(this);
+                magicText.setText("【まほう】");
+                messageList.add(magicText);
+
+                //モンスターを攻撃
+                messageList.addAll(h.magic(m));
+
+                //HP>0 → 行動 HP<=0 → アイテムドロップ&戦闘終了
+                if(Human.getBattleFlag() && !Human.getLackMpFlag()){
+                    enemyAction();
+                }
+
                 break;
 
 
@@ -214,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //回復
                 messageList.addAll(h.recover());
 
-                if(Human.getBattleFlag()){
+                if(Human.getBattleFlag() && !Human.getLackMpFlag()){
                     enemyAction();
                 }
 
@@ -222,13 +240,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.scare :
 
+
                 break;
+
 
             case R.id.escape :
 
+                TextView escapeText = new TextView(this);
+                escapeText.setText("【ぬけだす】");
+                messageList.add(escapeText);
+                messageList.addAll(h.escape(goingDungeon));
+
                 break;
 
 
+        }
+
+        //死亡判定
+        if(h.getHp() <= 0){
+            TextView dead = new TextView(this);
+            dead.setText(h.getName() + "はたおれた……" + "\r\n");
+            dead.setTag("dead");
+            messageList.add(dead);
+            Human.setDeadFlag(true);
         }
 
         //ストーリーテキスト表示
@@ -237,7 +271,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if(messageList.get(i).getTag() == "damage"){
                 messageList.get(i).setTextColor(Color.parseColor("#880000"));
             }else if(messageList.get(i).getTag() == "recover"){
-                messageList.get(i).setTextColor(Color.parseColor("#4444cc"));
+                messageList.get(i).setTextColor(Color.parseColor("#3A2D6B"));
+            }else if(messageList.get(i).getTag() == "dead"){
+                messageList.get(i).setTextColor(Color.parseColor("#3E1244"));
             }else {
                 messageList.get(i).setTextColor(Color.parseColor("#220000"));
             }
@@ -246,6 +282,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //メニューカウント更新
         menuCountSet();
+
+        //MP欠如フラグをfalseに戻す
+        Human.setLackMpFlag(false);
 
         //スクロールビューを最下部に移動
         scrollView= (ScrollView)findViewById(R.id.storyScroll);
@@ -257,6 +296,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        //死亡フラグ確認後の処理
+        if(Human.getDeadFlag()){
+            FunctionReset.resetGame();
+            FunctionReset.resetParam(h);
+            Human.setDeadFlag(false);
+        }
     }
 
 
@@ -275,12 +320,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuDistance.setTextColor(Color.parseColor("#220000"));
     }
 
-    public static Context getContext(){
-        return MainActivity.context;
-    }
-
-
-
     public void enemyAction(){
         //モンスター行動
         if(m.getHp() >= 0){
@@ -293,6 +332,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Human.setBattleFlag(false);
                 scrollView.setBackgroundResource(goingDungeon.getBgImgName());
                 exploreButtonSet();
+
             }
 
         }else{
@@ -308,5 +348,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    public static Context getContext(){
+        return MainActivity.context;
+    }
+
+
 
 }
