@@ -7,6 +7,7 @@ import com.example.sample.dungeonrpg.MainActivity;
 
 import java.util.ArrayList;
 
+import Gameplay.Explore.Event.Event;
 import Object.Character.CreatureType.Human;
 import Object.Character.CreatureType.Monster;
 
@@ -16,9 +17,9 @@ public abstract class DungeonBase extends AppCompatActivity {
 
 	protected int bgImgName;
 
-	protected String dungeonName = "";
+	protected String dungeonName;
 
-	protected String dungeonType = "";
+	protected String dungeonType;
 
 	//コンストラクタ
 	public DungeonBase(Human human){
@@ -56,12 +57,77 @@ public abstract class DungeonBase extends AppCompatActivity {
 		return arrayList;
 	}
 
-	public String getDungeonName(){
-		return dungeonName;
+
+	public void setDungeonName(String name){
+		this.dungeonName = name;
 	}
 
+	//ゲッターダンジョンネーム
+	public String getDungeonName()
+	{
+		return this.dungeonName;
+	}
+
+	public void setDungeonType(String type){
+		this.dungeonName = type;
+	}
+
+	//ゲッターダンジョンクラス
 	public String getDungeonType(){
-		return dungeonType;
+		return this.dungeonType;
+	}
+
+	public ArrayList<TextView> noEvent(Human h){
+
+		ArrayList<TextView> a;
+		int r = new java.util.Random().nextInt(100) + 1;
+
+		if (r <= 2){
+			a = Event.nonEvent01(h);
+		}else if(r <= 4){
+			a = Event.nonEvent02(h);
+		}else if(r <= 6){
+			a = Event.nonEvent03(h);
+		}else if(r <= 8){
+			a = Event.nonEvent04(h);
+		}else if(r <= 10){
+			a = Event.nonEvent05(h);
+		}else if(r <= 12){
+			a = Event.nonEvent06(h);
+		}else if(r <= 14){
+			a = Event.nonEvent07(h);
+		}else if(r <= 16){
+			a = Event.nonEvent08(h);
+		}else if(r <= 18){
+			a = Event.nonEvent09(h);
+		}else if(r <= 20){
+			a = Event.nonEvent10(h);
+		}else if(r <= 22){
+			a = Event.nonEvent11(h);
+		}else if(r <= 24){
+			a = Event.nonEvent12(h);
+		}else if(r <= 26){
+			a = Event.nonEvent13(h);
+		}else if(r <= 28){
+			a = Event.nonEvent14(h);
+		}else if(r <= 30){
+			a = Event.nonEvent15(h);
+		}else if(r <= 32){
+			a = Event.nonEvent16(h);
+		}else if(r <= 34){
+			a = Event.nonEvent17(h);
+		}else if(r <= 36){
+			a = Event.nonEvent18(h);
+		}else if(r <= 38){
+			a = Event.nonEvent19(h);
+		}else if(r <= 40){
+			a = Event.nonEvent20(h);
+		}else{
+			a = Event.nonEvent00(h);
+		}
+
+		return a;
+
 	}
 
 }

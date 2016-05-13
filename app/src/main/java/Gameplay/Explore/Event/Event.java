@@ -29,6 +29,173 @@ public class Event {
 		return m;
 	}
 
+	public static ArrayList<TextView> nonEvent00(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent01(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は何か不吉な予感がした。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent02(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("奥から風がふいてきた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent03(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("何かの雄叫びが聞こえた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent04(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は大切な人のことを思い出した。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent05(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("何かのうなり声が聞こえた。 しかしそれは"+ h.getName() + "のお腹の音だった。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent06(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は拾った宝石の数を数えた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent07(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "の頬を汗がつたった。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent08(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("どこからか甘いにおいがした。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent09(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は薄暗い道に出た。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent10(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は広い道に出た。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent11(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("近くに魔物の気配を感じる。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent12(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "ひび割れた道を慎重に歩いた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent13(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("あたりは静寂につつまれている。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent14(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "はポケットに手をつっこんだ。 食べかけのクッキーを見つけた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent15(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は剣を手入れした。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent16(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText("水のしたたる音が聞こえる。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+
+	public static ArrayList<TextView> nonEvent17(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は深呼吸をした。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+
+	public static ArrayList<TextView> nonEvent18(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は背筋に寒気を感じた。"+ "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent19(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "はコンパスを見た。" + "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
+	public static ArrayList<TextView> nonEvent20(Human h){
+		ArrayList<TextView> arrayList = new ArrayList<TextView>();
+		TextView t = new TextView(MainActivity.getContext());
+		t.setText(h.getName() + "は何かの視線を感じた。" + "\r\n");
+		arrayList.add(t);
+		return arrayList;
+	}
+
 
 	//湧き水を発見(最大HPの1/5回復)
 	public static ArrayList<TextView> recoverEvent01(Human h){
@@ -91,7 +258,7 @@ public class Event {
 
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
 		TextView recover99Text = new TextView(MainActivity.getContext());
-		recover99Text.setText("新緑の大地を見つけた! "+ h.getName() + "は、身体を休めた。 "+ h.getName() + "のHPが"+ recoverValueActual + "回復した！" + "\r\n");
+		recover99Text.setText("新緑の大地を見つけた! " + h.getName() + "のHPが"+ recoverValueActual + "回復した！" + "\r\n");
 		recover99Text.setTag("recover");
 		arrayList.add(recover99Text);
 		Human.setPositiveTrapFlag(true);

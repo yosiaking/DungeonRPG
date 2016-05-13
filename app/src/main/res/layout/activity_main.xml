@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--「Option + Command + L」で整形-->
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,196 +14,69 @@
     tools:context="com.example.sample.dungeonrpg.MainActivity">
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/frame_storyboard_over"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/bg_menu"
-        android:gravity="left"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:layout_height="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/heroImage"
-            android:layout_width="30dp"
-            android:layout_height="60dp"
-            android:src="@drawable/hero"/>
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/menu_jewel"/>
+
 
         <TextView
-            android:id="@+id/heroName"
+            android:id="@+id/jewelCount"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginLeft="7dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:text="名前"
+            android:text="10"
             android:textColor="@color/statusText"
-            android:textSize="@dimen/menu_text_size"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
-            android:gravity="left"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:id="@+id/h"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:text="H"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textColor="@color/statusText"
-                    android:textSize="@dimen/menu_text_size"
-                    />
-
-                <TextView
-                    android:id="@+id/heroHp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
-                    android:gravity="center"
-                    android:text="100／100"
-                    android:textColor="@color/statusText"
-                    android:textSize="@dimen/menu_text_size"/>
-
-                <ProgressBar
-                    android:id="@+id/progressHp"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:progressDrawable="@drawable/progress_hpmp"/>
-
-            </LinearLayout>
+            android:textSize="@dimen/menu_text_size_big"/>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp" >
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/menu_floor"/>
 
-                <TextView
-                    android:id="@+id/m"
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:text="M"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    android:textColor="@color/statusText"
-                    android:textSize="@dimen/menu_text_size"
-                    />
-
-                <TextView
-                    android:id="@+id/heroMp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
-                    android:gravity="center"
-                    android:text="100／100"
-                    android:textColor="@color/statusText"
-                    android:textSize="@dimen/menu_text_size"/>
-
-                <ProgressBar
-                    android:id="@+id/progressMp"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:progressDrawable="@drawable/progress_hpmp"/>
-
-            </LinearLayout>
-
-
-
-
-        </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+        <TextView
+            android:id="@+id/floorCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="1"
+            android:textColor="@color/statusText"
+            android:textSize="@dimen/menu_text_size_big"/>
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/menu_distance"/>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:src="@drawable/menu_jewel"/>
-
-
-            <TextView
-                android:id="@+id/jewelCount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/statusText"
-                android:textSize="@dimen/menu_text_size_big"/>
-
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/menu_floor"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
-                android:id="@+id/floorCount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="@color/statusText"
-                android:textSize="@dimen/menu_text_size_big"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/menu_distance"
-                android:layout_marginLeft="30dp"/>
-
-            <TextView
-                android:id="@+id/distanceCount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="@color/statusText"
-                android:textSize="@dimen/menu_text_size_big"/>
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/distanceCount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/statusText"
+            android:textSize="@dimen/menu_text_size_big"/>
 
     </LinearLayout>
 
@@ -231,71 +102,201 @@
 
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
+            android:layout_height="50dp"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/go"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_go"/>
+                android:id="@+id/heroImage"
+                android:layout_width="30dp"
+                android:layout_height="60dp"
+                android:src="@drawable/hero"/>
 
-            <ImageView
-                android:id="@+id/attack"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_attack"/>
+            <TextView
+                android:id="@+id/heroName"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="7dp"
+                android:gravity="center"
+                android:text="名前"
+                android:textColor="@color/statusText"
+                android:textSize="@dimen/menu_text_size"/>
 
-            <ImageView
-                android:id="@+id/magic"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_magic"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:gravity="center"
+                        android:src="@drawable/icon_hp"
+                        />
+
+                    <TextView
+                        android:id="@+id/heroHp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="center"
+                        android:text="100／100"
+                        android:textColor="@color/statusText"
+                        android:textSize="@dimen/menu_text_size"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressHp"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:progressDrawable="@drawable/progress_hpmp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:gravity="center"
+                        android:src="@drawable/icon_mp"
+                        />
+
+                    <TextView
+                        android:id="@+id/heroMp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2dp"
+                        android:gravity="center"
+                        android:text="100／100"
+                        android:textColor="@color/statusText"
+                        android:textSize="@dimen/menu_text_size"/>
+
+                    <ProgressBar
+                        android:id="@+id/progressMp"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:progressDrawable="@drawable/progress_hpmp"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:src="@drawable/frame_storyboard_under"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/go"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:src="@drawable/button_selecter_go"/>
 
-            <ImageView
-                android:id="@+id/recover"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_recover"/>
+        <ImageView
+            android:id="@+id/attack"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:src="@drawable/button_selecter_attack"/>
 
-            <ImageView
-                android:id="@+id/scare"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_scare"/>
+        <ImageView
+            android:id="@+id/magic"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:src="@drawable/button_selecter_magic"/>
 
-            <ImageView
-                android:id="@+id/escape"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/button_margin"
-                android:layout_weight="1"
-                android:src="@drawable/button_selecter_escape"/>
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/recover"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:src="@drawable/button_selecter_recover"/>
+
+        <ImageView
+            android:id="@+id/scare"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:src="@drawable/button_selecter_scare"/>
+
+        <ImageView
+            android:id="@+id/escape"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/button_margin"
+            android:layout_weight="1"
+            android:src="@drawable/button_selecter_escape"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

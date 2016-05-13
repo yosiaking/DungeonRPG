@@ -16,11 +16,9 @@ public class Dungeon001 extends Cave {
 	
 	public Dungeon001(Human human) {
 		super(human);
+		super.dungeonName = "はじまりの洞窟";
 		// TODO Auto-generated constructor stub
 	}
-
-	//名前
-	protected String dungeonName = "はじまりのどうくつ";
 
 	//BgImgName
 	private int bgImgName = R.drawable.dungeon001;
@@ -41,22 +39,23 @@ public class Dungeon001 extends Cave {
 		//イベントの確率計算
 		int eventNum = new java.util.Random().nextInt(100);
 
-		if(eventNum >= 0 && eventNum < 40){
+		if(eventNum < 40){
 			//何も起きない(40%)
+			arrayList.addAll(noEvent(h));
 
-		}else if(eventNum >= 40 && eventNum < 60){
-			//モンスターとのエンカウント(25%)
+		}else if(eventNum < 65){
+			//モンスターとのエンカウント(20%)
 			Event.encountEnemy();
 
-		}else if(eventNum >=60  && eventNum < 84){
-			//宝石を拾う(30%)
+		}else if(eventNum < 85){
+			//宝石を拾う(20%)
 			arrayList.addAll(getJewel(h));
 
-		}else if(eventNum >=84  && eventNum < 92){
+		}else if(eventNum < 92){
 			//回復イベント
 			arrayList.addAll(getPositiveTrap(h));
 
-		}else if(eventNum >= 92 && eventNum < 100){
+		}else if(eventNum < 100){
 			//トラップイベント
 			arrayList.addAll(getNegativeTrap(h));
 		}

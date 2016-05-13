@@ -13,10 +13,9 @@ import Object.Dungeon.DungeonBase;
  */
 public abstract class  Cave extends DungeonBase {
 
-    private String dungeonType = "どうくつ";
-
     public Cave(Human human) {
         super(human);
+        super.dungeonType = "洞窟";
     }
 
     public abstract ArrayList<TextView> goForwardDungeon();

@@ -99,10 +99,19 @@ public abstract class Human extends Creature {
 	//逃げる
 	public ArrayList<TextView> escape(DungeonBase d, Monster m){
 
+		//帰り道の宝石計算(歩行距離の1／5)
+		int escapeJewel = Human.getDistance() / 5 ;
+		Human.obtainJewel(escapeJewel);
+
 		humanMessageList = new ArrayList<TextView>();
 		TextView escapeText = new TextView(context);
-		escapeText.setText(getName() + "は" + d.getDungeonType() + "をぬけだした"+ "\r\n");
+		escapeText.setText(getName() + "は" + d.getDungeonType() + "をぬけだした。"+ "\r\n");
 		humanMessageList.add(escapeText);
+
+		TextView jewelText = new TextView(context);
+		jewelText.setText("帰り道、" + escapeJewel + "個の宝石を拾った!"+ "\r\n");
+		humanMessageList.add(jewelText);
+
 		FunctionReset.resetGame();
 		FunctionReset.resetParam(this, m);
 		return humanMessageList;
