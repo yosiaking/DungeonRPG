@@ -2,7 +2,7 @@ package Object.Character.Enemy;
 
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 import com.example.sample.dungeonrpg.R;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class Dragon extends Monster {
 
 
 	public Dragon(){
-		super("ドラゴン", 70, 70, 20, 20, 20, 20, 5, 30, MainActivity.getContext());
+		super("ドラゴン", 70, 70, 20, 20, 20, 20, 5, 30, ExploreActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){

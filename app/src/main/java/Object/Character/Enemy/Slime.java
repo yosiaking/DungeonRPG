@@ -2,7 +2,7 @@ package Object.Character.Enemy;
 
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 import com.example.sample.dungeonrpg.R;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Slime extends Monster {
 	private int	enemyImg = R.drawable.enemy_slime;
 
 	public Slime(){
-		super("スライム", 20, 20, 0, 0, 3, 1, 1, 10,  MainActivity.getContext());
+		super("スライム", 20, 20, 0, 0, 3, 1, 1, 10,  ExploreActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){
@@ -42,7 +42,7 @@ public class Slime extends Monster {
 
 	public ArrayList<TextView> test(){
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
-		TextView test = new TextView(MainActivity.getContext());
+		TextView test = new TextView(ExploreActivity.getContext());
 		test.setText("test");
 		arrayList.add(test);
 		return arrayList;

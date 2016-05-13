@@ -11,56 +11,37 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.sample.dungeonrpg.MainActivity">
+    tools:context="com.example.sample.dungeonrpg.ExploreActivity">
 
 
-    <Button
-        android:id="@+id/exploreFree"
+    <TextView
+        android:id="@+id/resultHeroName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="フリー"
-        />
+        android:text="名前"/>
 
-    <Button
-        android:id="@+id/exploreJewel5"
+    <TextView
+        android:id="@+id/resultJewelCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="5個"
-        />
+        android:text="宝石"/>
 
-    <Button
-        android:id="@+id/exploreJewel10"
+    <TextView
+        android:id="@+id/resultFloorCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="10個"
-        />
+        android:text="階段"/>
 
-    <Button
-        android:id="@+id/exploreJewel15"
+    <TextView
+        android:id="@+id/resultDistanceCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="15個"
-        />
+        android:text="距離"/>
 
     <Button
-        android:id="@+id/exploreJewel20"
-        android:layout_width="match_parent"
+        android:id="@+id/onceMore"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20個"
-        />
-
-    <Button
-        android:id="@+id/exploreJewel25"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="25個"
-        />
-
-    <Button
-        android:id="@+id/exploreJewel30"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="30個"
-        />
+        android:text="もう一度プレイする"/>
 
 </LinearLayout>

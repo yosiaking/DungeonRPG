@@ -3,7 +3,7 @@ package Object.Character.CreatureType;
 import android.content.Context;
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,7 @@ public abstract class Monster extends Creature {
 	public ArrayList<TextView> attack(Human h){
 
 		monsterMessageList = new ArrayList<TextView>();
-		TextView attackText = new TextView(MainActivity.getContext());
+		TextView attackText = new TextView(ExploreActivity.getContext());
 
 		//ダメージ値確定
 		int damage = attackDamage();
@@ -60,7 +60,7 @@ public abstract class Monster extends Creature {
 	public ArrayList<TextView> magicAttack(Human h){
 
 		monsterMessageList = new ArrayList<TextView>();
-		TextView magicText = new TextView(MainActivity.getContext());
+		TextView magicText = new TextView(ExploreActivity.getContext());
 
 		if(this.getMp() >= 5){
 			//ダメージ値確定
@@ -79,7 +79,7 @@ public abstract class Monster extends Creature {
 	//逃げる
 	public ArrayList<TextView> escape(){
 		monsterMessageList = new ArrayList<TextView>();
-		TextView escapeText = new TextView(MainActivity.getContext());
+		TextView escapeText = new TextView(ExploreActivity.getContext());
 		escapeText.setText(this.getName() + "は逃げ出した！" + "\r\n");
 		this.escapeFlag = true;
 		monsterMessageList.add(escapeText);
@@ -89,7 +89,7 @@ public abstract class Monster extends Creature {
 	//アイテムドロップ
 	public ArrayList<TextView> dropItem() {
 		monsterMessageList = new ArrayList<TextView>();
-		TextView jewelText = new TextView(MainActivity.getContext());
+		TextView jewelText = new TextView(ExploreActivity.getContext());
 
 		int dropRateCount = new java.util.Random().nextInt(100);
 		if(dropRateCount - getDropRate() < 0){

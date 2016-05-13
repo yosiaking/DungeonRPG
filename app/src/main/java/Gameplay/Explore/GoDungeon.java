@@ -14,12 +14,12 @@ public class GoDungeon extends GoDungeonFunction implements GenerateDungeon{
 		this.dungeonNum = dungeonNum;
 	}
 
-	public DungeonBase dungeonGenerate(Human h){
+	public DungeonBase dungeonGenerate(Human h, int clearJewelCount){
 
 		DungeonBase d = null;
 		switch(this.dungeonNum){
 			case 1 :
-				d = new Dungeon001(h);
+				d = new Dungeon001(h, clearJewelCount);
 				break;
 		}
 

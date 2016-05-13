@@ -2,7 +2,7 @@ package Gameplay.Explore.Event;
 
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class Battle {
 
 		//コンテキストビュー生成
 		ArrayList<TextView> arrayList = new ArrayList<TextView>();
-		TextView textView = new TextView(MainActivity.getContext());
+		TextView textView = new TextView(ExploreActivity.getContext());
 
 		textView.setText(m.getName() + "が現れた！");
 		arrayList.add(textView);

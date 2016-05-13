@@ -3,7 +3,7 @@ package Object.Dungeon;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,8 @@ import Object.Character.CreatureType.Human;
 import Object.Character.CreatureType.Monster;
 
 public abstract class DungeonBase extends AppCompatActivity {
+
+	protected int clearJewelCount;
 
 	protected Human h;
 
@@ -45,7 +47,7 @@ public abstract class DungeonBase extends AppCompatActivity {
 		Human.forwardDistance(1);
 
 		//テキスト
-		TextView goText = new TextView(MainActivity.getContext());
+		TextView goText = new TextView(ExploreActivity.getContext());
 		goText.setText(h.getName() + "は奥へと進んだ。" + "\r\n");
 		arrayList.add(goText);
 
@@ -76,6 +78,17 @@ public abstract class DungeonBase extends AppCompatActivity {
 	public String getDungeonType(){
 		return this.dungeonType;
 	}
+
+	//セッタークリアJewel
+	public void setClearJewelCount(int count){
+		this.clearJewelCount = count;
+	}
+
+	//ゲッタークリアJewel
+	public int getClearJewelCount(){
+		return this.clearJewelCount;
+	}
+
 
 	public ArrayList<TextView> noEvent(Human h){
 

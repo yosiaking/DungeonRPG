@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import Gameplay.Function.FunctionReset;
 import Object.Character.Origin.Creature;
 import Object.Dungeon.DungeonBase;
 
@@ -29,6 +28,8 @@ public abstract class Human extends Creature {
 	private static boolean positiveTrapFlag = false;
 	//死亡フラグ
 	private static boolean deadFlag = false;
+	//脱出フラグ
+	private static boolean escapeFlag = false;
 
 	//コンテキスト
 	private Context context;
@@ -112,8 +113,8 @@ public abstract class Human extends Creature {
 		jewelText.setText("帰り道、" + escapeJewel + "個の宝石を拾った!"+ "\r\n");
 		humanMessageList.add(jewelText);
 
-		FunctionReset.resetGame();
-		FunctionReset.resetParam(this, m);
+		setEscapeFlag(true);
+
 		return humanMessageList;
 	}
 	
@@ -215,6 +216,16 @@ public abstract class Human extends Creature {
 	//死亡フラグゲッター
 	public static boolean getDeadFlag(){
 		return Human.deadFlag;
+	}
+
+	//脱出フラグセッター
+	public static void setEscapeFlag(boolean flag){
+		Human.escapeFlag = flag;
+	}
+
+	//脱出フラグゲッター
+	public static boolean getEscapeFlag(){
+		return Human.escapeFlag;
 	}
 
 

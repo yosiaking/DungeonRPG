@@ -2,7 +2,7 @@ package Object.Dungeon.Dungeon001;
 
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 import com.example.sample.dungeonrpg.R;
 
 import java.util.ArrayList;
@@ -14,9 +14,10 @@ import Object.Dungeon.DungeonType.Cave;
 
 public class Dungeon001 extends Cave {
 	
-	public Dungeon001(Human human) {
+	public Dungeon001(Human human, int clearJewelCount) {
 		super(human);
 		super.dungeonName = "はじまりの洞窟";
+		super.clearJewelCount = clearJewelCount;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -62,7 +63,7 @@ public class Dungeon001 extends Cave {
 
 		//10ごとに階層が上がる(下がる)
 		if(Human.getDistance() % 10 == 0){
-			TextView floorText = new TextView(MainActivity.getContext());
+			TextView floorText = new TextView(ExploreActivity.getContext());
 			floorText.setText(h.getName() + "は、階段を降りた。" + "\r\n");
 			arrayList.add(floorText);
 			Human.forwardDungeonFloor(1);

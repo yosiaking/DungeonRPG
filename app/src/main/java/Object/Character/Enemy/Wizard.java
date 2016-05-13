@@ -2,12 +2,13 @@ package Object.Character.Enemy;
 
 import android.widget.TextView;
 
-import com.example.sample.dungeonrpg.MainActivity;
+import com.example.sample.dungeonrpg.ExploreActivity;
 import com.example.sample.dungeonrpg.R;
 
 import java.util.ArrayList;
 
-import Object.Character.CreatureType.*;
+import Object.Character.CreatureType.Human;
+import Object.Character.CreatureType.Monster;
 
 
 public class Wizard extends Monster {
@@ -15,7 +16,7 @@ public class Wizard extends Monster {
 	int enemyImg = R.drawable.enemy_wizard;
 	
 	public Wizard(){
-		super("黒魔術師", 40, 40, 10, 10, 8, 20, 3, 20, MainActivity.getContext());
+		super("黒魔術師", 40, 40, 10, 10, 8, 20, 3, 20, ExploreActivity.getContext());
 	}
 	
 	public ArrayList<TextView> action(Human h){
