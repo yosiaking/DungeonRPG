@@ -1,161 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--「Option + Command + L」で整形-->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_brown"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg_brown"
     tools:context="com.example.sample.dungeonrpg.MainActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:gravity="left">
+        android:layout_height="100dp"
+        android:background="@drawable/bg_menu"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/heroImage"
-            android:src="@drawable/hero"
             android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_height="60dp"
+            android:src="@drawable/hero"/>
 
         <TextView
             android:id="@+id/heroName"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:layout_marginLeft="7dp"
             android:gravity="center"
-            android:textSize="@dimen/menu_text_size"
             android:text="名前"
-            android:textColor="@color/statusText"/>
+            android:textColor="@color/statusText"
+            android:textSize="@dimen/menu_text_size"/>
 
-        <TextView
-            android:id="@+id/heroH"
-            android:textStyle="bold"
-            android:layout_marginLeft="7dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <TextView
+                    android:id="@+id/h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="H"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/statusText"
+                    android:textSize="@dimen/menu_text_size"
+                    />
+
+                <TextView
+                    android:id="@+id/heroHp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center"
+                    android:text="100／100"
+                    android:textColor="@color/statusText"
+                    android:textSize="@dimen/menu_text_size"/>
+
+                <ProgressBar
+                    android:id="@+id/progressHp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:progressDrawable="@drawable/progress_hpmp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" >
+
+                <TextView
+                    android:id="@+id/m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="M"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textColor="@color/statusText"
+                    android:textSize="@dimen/menu_text_size"
+                    />
+
+                <TextView
+                    android:id="@+id/heroMp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center"
+                    android:text="100／100"
+                    android:textColor="@color/statusText"
+                    android:textSize="@dimen/menu_text_size"/>
+
+                <ProgressBar
+                    android:id="@+id/progressMp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:progressDrawable="@drawable/progress_hpmp"/>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
             android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="H"
-            android:textColor="@color/statusText"/>
+            android:orientation="horizontal">
 
 
-        <TextView
-            android:id="@+id/heroHp"
-            android:layout_marginLeft="2dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="100／100"
-            android:textColor="@color/statusText"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:src="@drawable/menu_jewel"/>
 
 
-        <TextView
-            android:id="@+id/heroM"
-            android:textStyle="bold"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="M"
-            android:textColor="@color/statusText"/>
+            <TextView
+                android:id="@+id/jewelCount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="10"
+                android:textColor="@color/statusText"
+                android:textSize="@dimen/menu_text_size_big"/>
 
 
-        <TextView
-            android:id="@+id/heroMp"
-            android:layout_marginLeft="2dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="100／100"
-            android:textColor="@color/statusText"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/menu_floor"
+                android:layout_marginLeft="30dp"/>
 
+            <TextView
+                android:id="@+id/floorCount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/statusText"
+                android:textSize="@dimen/menu_text_size_big"/>
 
-        <TextView
-            android:id="@+id/heroJ"
-            android:textStyle="bold"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="宝"
-            android:textColor="@color/statusText"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/menu_distance"
+                android:layout_marginLeft="30dp"/>
 
+            <TextView
+                android:id="@+id/distanceCount"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@color/statusText"
+                android:textSize="@dimen/menu_text_size_big"/>
 
-        <TextView
-            android:id="@+id/jewelCount"
-            android:layout_marginLeft="2dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="10"
-            android:textColor="@color/statusText"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/heroF"
-            android:textStyle="bold"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="階"
-            android:textColor="@color/statusText"/>
-
-        <TextView
-            android:id="@+id/floorCount"
-            android:layout_marginLeft="2dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="1"
-            android:textSize="@dimen/menu_text_size"
-            android:textColor="@color/statusText"/>
-
-        <TextView
-            android:id="@+id/heroD"
-            android:textStyle="bold"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="@dimen/menu_text_size"
-            android:text="進"
-            android:textColor="@color/statusText"/>
-
-        <TextView
-            android:id="@+id/distanceCount"
-            android:layout_marginLeft="2dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="1"
-            android:textSize="@dimen/menu_text_size"
-            android:textColor="@color/statusText"/>
 
     </LinearLayout>
-
-
 
 
     <ScrollView
         android:id="@+id/storyScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
         android:layout_marginTop="10dp"
+        android:layout_weight="6"
         android:background="@drawable/dungeon001"
         >
 
@@ -170,124 +230,72 @@
         </LinearLayout>
 
     </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
 
-        <ImageView
-            android:id="@+id/go"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:src="@drawable/button_selecter_go"
-            android:layout_margin="@dimen/button_margin"/>
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/attack"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/go"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_go"/>
+
+            <ImageView
+                android:id="@+id/attack"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_attack"/>
+
+            <ImageView
+                android:id="@+id/magic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_magic"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:src="@drawable/button_selecter_attack"
-            android:layout_margin="@dimen/button_margin"/>
+            android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/magic"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/button_selecter_magic"
-            android:layout_margin="@dimen/button_margin"/>
+            <ImageView
+                android:id="@+id/recover"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_recover"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/attack"-->
-            <!--android:text="たたかう"-->
-            <!--android:textSize="12sp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/unable_button_selecter"-->
-            <!--android:textColor="@color/buttonTextColor"-->
-            <!--android:layout_margin="@dimen/button_margin"/>-->
+            <ImageView
+                android:id="@+id/scare"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_scare"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/magic"-->
-            <!--android:text="まほう"-->
-            <!--android:textSize="12sp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/unable_button_selecter"-->
-            <!--android:textColor="@color/buttonTextColor"-->
-            <!--android:layout_margin="@dimen/button_margin"/>-->
+            <ImageView
+                android:id="@+id/escape"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/button_margin"
+                android:layout_weight="1"
+                android:src="@drawable/button_selecter_escape"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/recover"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/button_selecter_recover"
-            android:layout_margin="@dimen/button_margin"/>
-
-        <ImageView
-            android:id="@+id/scare"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/button_selecter_scare"
-            android:layout_margin="@dimen/button_margin"/>
-
-        <ImageView
-            android:id="@+id/escape"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/button_selecter_escape"
-            android:layout_margin="@dimen/button_margin"/>
-
-        <!--<Button-->
-            <!--android:id="@+id/recover"-->
-            <!--android:text="いのる"-->
-            <!--android:textSize="12sp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/unable_button_selecter"-->
-            <!--android:textColor="@color/buttonTextColor"-->
-            <!--android:layout_margin="@dimen/button_margin"/>-->
+        </LinearLayout>
 
 
-        <!--<Button-->
-            <!--android:id="@+id/scare"-->
-            <!--android:text="おどかす"-->
-            <!--android:textSize="12sp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/unable_button_selecter"-->
-            <!--android:textColor="@color/buttonTextColor"-->
-            <!--android:layout_margin="@dimen/button_margin"/>-->
-
-        <!--<Button-->
-            <!--android:id="@+id/escape"-->
-            <!--android:text="ぬけだす"-->
-            <!--android:textSize="12sp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/unable_button_selecter"-->
-            <!--android:textColor="@color/buttonTextColor"-->
-            <!--android:layout_margin="@dimen/button_margin"/>-->
-
-
-    </LinearLayout>
 </LinearLayout>

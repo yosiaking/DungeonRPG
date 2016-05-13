@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //モンスター生成
     private Monster m;
 
+    //プログレスバーHP MP
+    private ProgressBar progressBarHp;
+    private ProgressBar progressBarMp;
 
     //ボタンフィールド
     private ImageView goButton;
@@ -83,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Context取得
         context = getApplicationContext();
 
+        //プログレスバー
+        progressBarHp = (ProgressBar) findViewById(R.id.progressHp);
+        progressBarMp = (ProgressBar) findViewById(R.id.progressMp);
+
         //ボタン
         goButton = (ImageView) findViewById(R.id.go);
         attackButton = (ImageView) findViewById(R.id.attack);
@@ -107,14 +115,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menuFloor = (TextView) findViewById(R.id.floorCount);
         menuDistance = (TextView) findViewById(R.id.distanceCount);
 
-        //音声
-
-
         //ボタンの初期設定
         exploreButtonSet();
 
         //主人公の生成
         h = new Hero("ヨシアキ", 100, 100, 50, 50);
+
+
+        // 水平プログレスバーの最大値を設定します
+        progressBarHp.setMax(h.getMaxHp());
+        progressBarHp.setSecondaryProgress(h.getMaxHp());
+        progressBarHp.setProgress(h.getHp());
+        progressBarMp.setMax(h.getMaxMp());
+        progressBarMp.setSecondaryProgress(h.getMaxMp());
+        progressBarMp.setProgress(h.getMp());
 
         //メニューカウント更新
         menuCountSet();
@@ -122,43 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        //ダンジョン生成
         dungeon = new GoDungeon(1);
         goingDungeon = dungeon.dungeonGenerate(h);
+
+
     }
 
-
-    //戦闘中ボタンセット
-    public void battleButtonSet(){
-        goButton.setEnabled(false);
-        attackButton.setEnabled(true);
-        escapeButton.setEnabled(false);
-        recoverButton.setEnabled(true);
-        scareButton.setEnabled(true);
-        magicButton.setEnabled(true);
-    }
-
-    //探索中ボタンセット
-    public void exploreButtonSet(){
-        goButton.setEnabled(true);
-        attackButton.setEnabled(false);
-        escapeButton.setEnabled(true);
-        recoverButton.setEnabled(true);
-        scareButton.setEnabled(false);
-        magicButton.setEnabled(false);
-    }
-
-    //ボタンすべて非表示
-    public void allButtonNoSet(){
-        goButton.setEnabled(false);
-        attackButton.setEnabled(false);
-        escapeButton.setEnabled(false);
-        recoverButton.setEnabled(false);
-        scareButton.setEnabled(false);
-        magicButton.setEnabled(false);
-    }
-
-    public void onResume(){
-        super.onResume();
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -249,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 TextView escapeText = new TextView(this);
                 escapeText.setText("【ぬけだす】");
                 messageList.add(escapeText);
-                messageList.addAll(h.escape(goingDungeon));
+                messageList.addAll(h.escape(goingDungeon, m));
 
                 break;
 
@@ -283,6 +264,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //メニューカウント更新
         menuCountSet();
 
+        //プログレスバー更新
+        progressBarHp.setProgress(h.getHp());
+        progressBarMp.setProgress(h.getMp());
+
         //MP欠如フラグをfalseに戻す
         Human.setLackMpFlag(false);
 
@@ -299,8 +284,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //死亡フラグ確認後の処理
         if(Human.getDeadFlag()){
             FunctionReset.resetGame();
-            FunctionReset.resetParam(h);
+            FunctionReset.resetParam(h, m);
+            exploreButtonSet();
             Human.setDeadFlag(false);
+        }
+
+        //各フラッグ確認 & 背景差し替え
+        if(Human.getBattleFlag()){
+            scrollView.setBackgroundResource(m.getEnemyImg());
+        }else if(Human.getJewelFlag()){
+            scrollView.setBackgroundResource(R.drawable.bg_jewel);
+            Human.setJewelFlag(false);
+        }else if(Human.getNegativeTrapFlag()){
+            scrollView.setBackgroundResource(R.drawable.bg_negativetrap);
+            Human.setNegativeTrapFlag(false);
+        }else if(Human.getPositiveTrapFlag()){
+            scrollView.setBackgroundResource(R.drawable.bg_positivetrap);
+            Human.setPositiveTrapFlag(false);
+        }else{
+            scrollView.setBackgroundResource(goingDungeon.getBgImgName());
         }
     }
 
@@ -308,34 +310,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void menuCountSet(){
         menuName.setText("" + h.getName());
         menuName.setTextColor(Color.parseColor("#220000"));
-        menuHp.setText("" + h.getHp() + "/" + h.getMaxHp());
+        menuHp.setText("" + String.format("%03d", h.getHp()) + "／" + String.format("%03d", h.getMaxHp()));
         menuHp.setTextColor(Color.parseColor("#220000"));
-        menuMp.setText("" + h.getMp() + "/" + h.getMaxMp());
+        menuMp.setText("" + String.format("%03d", h.getMp()) + "／" + String.format("%03d", h.getMaxMp()));
         menuMp.setTextColor(Color.parseColor("#220000"));
-        menuJewel.setText("" + Human.getCountJewel());
+        menuJewel.setText("" + String.format("%03d",Human.getCountJewel()) );
         menuJewel.setTextColor(Color.parseColor("#220000"));
-        menuFloor.setText("" + Human.getDungeonFloor());
+        menuFloor.setText(""  + String.format("%03d",Human.getDungeonFloor()));
         menuFloor.setTextColor(Color.parseColor("#220000"));
-        menuDistance.setText("" + Human.getDistance());
+        menuDistance.setText(""  + String.format("%03d",Human.getDistance()));
         menuDistance.setTextColor(Color.parseColor("#220000"));
     }
 
     public void enemyAction(){
         //モンスター行動
-        if(m.getHp() >= 0){
-            //true なら モンスターの行動
-            messageList.addAll(m.action(h));
+        if(m.getHp() <= 0){
 
-            //モンスターが逃げた場合
-            if(m.getEscapeFlag() == true){
-                m = null;
-                Human.setBattleFlag(false);
-                scrollView.setBackgroundResource(goingDungeon.getBgImgName());
-                exploreButtonSet();
-
-            }
-
-        }else{
             //モンスターを倒した場合(HP<=0)
             TextView downEnemy = new TextView(this);
             downEnemy.setText(m.getName() + "を倒した。" + "\r\n");
@@ -343,10 +333,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             messageList.addAll(m.dropItem());
             m = null;
             Human.setBattleFlag(false);
-            scrollView.setBackgroundResource(goingDungeon.getBgImgName());
             exploreButtonSet();
 
+        }else{
+
+            //HP > 0 なら モンスターの行動
+            messageList.addAll(m.action(h));
+
+            //モンスターが逃げた場合
+            if(m.getEscapeFlag() == true){
+                m = null;
+                Human.setBattleFlag(false);
+                exploreButtonSet();
+
+            }
         }
+    }
+
+
+
+    //戦闘中ボタンセット
+    public void battleButtonSet(){
+        goButton.setEnabled(false);
+        attackButton.setEnabled(true);
+        escapeButton.setEnabled(false);
+        recoverButton.setEnabled(true);
+        scareButton.setEnabled(true);
+        magicButton.setEnabled(true);
+    }
+
+    //探索中ボタンセット
+    public void exploreButtonSet(){
+        goButton.setEnabled(true);
+        attackButton.setEnabled(false);
+        escapeButton.setEnabled(true);
+        recoverButton.setEnabled(true);
+        scareButton.setEnabled(false);
+        magicButton.setEnabled(false);
+    }
+
+    //ボタンすべて非表示
+    public void allButtonNoSet(){
+        goButton.setEnabled(false);
+        attackButton.setEnabled(false);
+        escapeButton.setEnabled(false);
+        recoverButton.setEnabled(false);
+        scareButton.setEnabled(false);
+        magicButton.setEnabled(false);
     }
 
     public static Context getContext(){

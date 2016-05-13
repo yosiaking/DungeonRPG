@@ -21,6 +21,12 @@ public abstract class Human extends Creature {
 	private static boolean battleFlag = false;
 	//MP切れフラグ
 	private static boolean lackMpFlag = false;
+	//宝石ゲットフラグ
+	private static boolean jewelFlag = false;
+	//ネガティブトラップフラグ
+	private static boolean negativeTrapFlag = false;
+	//ポジティブトラップフラグ
+	private static boolean positiveTrapFlag = false;
 	//死亡フラグ
 	private static boolean deadFlag = false;
 
@@ -91,14 +97,14 @@ public abstract class Human extends Creature {
 	}
 
 	//逃げる
-	public ArrayList<TextView> escape(DungeonBase d){
+	public ArrayList<TextView> escape(DungeonBase d, Monster m){
 
 		humanMessageList = new ArrayList<TextView>();
 		TextView escapeText = new TextView(context);
 		escapeText.setText(getName() + "は" + d.getDungeonType() + "をぬけだした"+ "\r\n");
 		humanMessageList.add(escapeText);
 		FunctionReset.resetGame();
-		FunctionReset.resetParam(this);
+		FunctionReset.resetParam(this, m);
 		return humanMessageList;
 	}
 	
@@ -160,6 +166,36 @@ public abstract class Human extends Creature {
 	//MP切れフラグゲッター
 	public static boolean getLackMpFlag(){
 		return lackMpFlag;
+	}
+
+	//宝石ゲットフラグセッター
+	public static void setJewelFlag(boolean flag){
+		Human.jewelFlag = flag;
+	}
+
+	//宝石ゲットフラグゲッター
+	public static boolean getJewelFlag(){
+		return jewelFlag;
+	}
+
+	//ネガティブフラグセッター
+	public static void setNegativeTrapFlag(boolean flag){
+		Human.negativeTrapFlag = flag;
+	}
+
+	//ネガティブフラグゲッター
+	public static boolean getNegativeTrapFlag(){
+		return negativeTrapFlag;
+	}
+
+	//ポジティブフラグゲッター
+	public static void setPositiveTrapFlag(boolean flag){
+		Human.positiveTrapFlag = flag;
+	}
+
+	//ポジティブフラグゲッター
+	public static boolean getPositiveTrapFlag(){
+		return positiveTrapFlag;
 	}
 
 	//死亡フラグセッター

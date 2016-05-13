@@ -1,7 +1,5 @@
 package Gameplay.CharaMake;
 
-import com.example.sample.dungeonrpg.MainActivity;
-
 import Object.Character.CreatureType.Monster;
 import Object.Character.Enemy.Demon;
 import Object.Character.Enemy.Dragon;
@@ -39,9 +37,6 @@ public class MakeEnemy {
 			default :
 				m = new SampleMonster();
 		}
-
-		//背景画像セット
-		MainActivity.scrollView.setBackgroundResource(m.getEnemyImg());
 
 		return m;
 	}

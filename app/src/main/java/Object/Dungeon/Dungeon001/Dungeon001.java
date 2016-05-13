@@ -42,19 +42,23 @@ public class Dungeon001 extends Cave {
 		int eventNum = new java.util.Random().nextInt(100);
 
 		if(eventNum >= 0 && eventNum < 40){
-		//何も起きない(40%)
-		}else if(eventNum >= 40 && eventNum < 65){
-		//バトルフラッグtrue(25%)
-			Human.setBattleFlag(true);
-		}else if(eventNum >=65  && eventNum < 95){
-		//宝石を拾う(30%)
-			arrayList.addAll(Event.getJewelEvent(h, 1, 2));
-		}else if(eventNum >= 95 && eventNum < 97){
-		//泉を発見HPMP回復(5%)
-			arrayList.addAll(Event.recoverEvent01(h));
-		}else if(eventNum >= 97 && eventNum < 100){
-			//泉を発見HPMP回復(5%)
-			arrayList.addAll(Event.trapEvent02(h));
+			//何も起きない(40%)
+
+		}else if(eventNum >= 40 && eventNum < 60){
+			//モンスターとのエンカウント(25%)
+			Event.encountEnemy();
+
+		}else if(eventNum >=60  && eventNum < 84){
+			//宝石を拾う(30%)
+			arrayList.addAll(getJewel(h));
+
+		}else if(eventNum >=84  && eventNum < 92){
+			//回復イベント
+			arrayList.addAll(getPositiveTrap(h));
+
+		}else if(eventNum >= 92 && eventNum < 100){
+			//トラップイベント
+			arrayList.addAll(getNegativeTrap(h));
 		}
 
 		//10ごとに階層が上がる(下がる)
@@ -71,7 +75,7 @@ public class Dungeon001 extends Cave {
 
 
 
-	//モンスターエンカウント計算
+	//階層ごとのモンスターエンカウント
 	public Monster encountEnemy(){
 		Monster m;
 		if(Human.getDungeonFloor() == 1){
@@ -86,6 +90,75 @@ public class Dungeon001 extends Cave {
 			m = Event.battleEvent(5);
 		}
 		return m;
+	}
+
+
+	//階層ごとの宝石個数
+	public ArrayList<TextView> getJewel(Human h){
+		ArrayList<TextView> a;
+
+		if(Human.getDungeonFloor() == 1){
+			a = Event.getJewelEvent(h, 1, 1);
+
+		}else if(Human.getDungeonFloor() == 2){
+			a = Event.getJewelEvent(h, 1, 2);
+
+		}else if(Human.getDungeonFloor() == 3){
+			a = Event.getJewelEvent(h, 2, 2);
+
+		}else if(Human.getDungeonFloor() == 4){
+			a = Event.getJewelEvent(h, 3, 1);
+
+		}else{
+			a = Event.getJewelEvent(h, 3, 2);
+		}
+		return a;
+	}
+
+
+	//階層ごとのポジティブトラップ
+	public ArrayList<TextView> getPositiveTrap(Human h){
+		ArrayList<TextView> a;
+
+		if(Human.getDungeonFloor() == 1){
+			a = Event.recoverEvent01(h);
+
+		}else if(Human.getDungeonFloor() == 2){
+			a = Event.recoverEvent02(h);
+
+		}else if(Human.getDungeonFloor() == 3){
+			a = Event.recoverEvent03(h);
+
+		}else if(Human.getDungeonFloor() == 4){
+			a = Event.recoverEvent04(h);
+
+		}else{
+			a = Event.recoverEvent99(h);
+		}
+		return a;
+	}
+
+
+	//階層ごとのネガティブトラップ
+	public ArrayList<TextView> getNegativeTrap(Human h){
+		ArrayList<TextView> a;
+
+		if(Human.getDungeonFloor() == 1){
+			a = Event.trapEvent01(h);
+
+		}else if(Human.getDungeonFloor() == 2){
+			a = Event.trapEvent02(h);
+
+		}else if(Human.getDungeonFloor() == 3){
+			a = Event.trapEvent03(h);
+
+		}else if(Human.getDungeonFloor() == 4){
+			a = Event.trapEvent04(h);
+
+		}else{
+			a = Event.trapEvent99(h);
+		}
+		return a;
 	}
 
 

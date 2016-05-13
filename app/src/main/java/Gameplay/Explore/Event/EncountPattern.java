@@ -54,13 +54,9 @@ public class EncountPattern {
 
 		//5 スライム10％ ゴブリン20% 魔法使い20% ドラゴン40% 魔人10%
 		case 5 :
-			if(encountNum < 10){
-				m = MakeEnemy.makeEnemy("slime");
-			}else if(encountNum < 30){
-				m = MakeEnemy.makeEnemy("goblin");
-			}else if(encountNum < 60){
+			if(encountNum < 30){
 				m = MakeEnemy.makeEnemy("wizard");
-			}else if(encountNum < 80){
+			}else if(encountNum < 70){
 				m = MakeEnemy.makeEnemy("dragon");
 			}else{
 				m = MakeEnemy.makeEnemy("demon");

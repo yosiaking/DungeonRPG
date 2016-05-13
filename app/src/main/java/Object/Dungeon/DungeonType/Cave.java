@@ -13,7 +13,7 @@ import Object.Dungeon.DungeonBase;
  */
 public abstract class  Cave extends DungeonBase {
 
-    protected String dungeonType = "どうくつ";
+    private String dungeonType = "どうくつ";
 
     public Cave(Human human) {
         super(human);
